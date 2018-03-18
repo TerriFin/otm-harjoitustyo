@@ -13,3 +13,5 @@ First week assignments:
 In here, i will **hopefully** build my very own *economy simulator*
 
 Hope to see you then **xoxoxo**
+
+This change was added from terminal
