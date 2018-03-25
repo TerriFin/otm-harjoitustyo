@@ -8,10 +8,12 @@ First week assignments:
 
 [komentorivi.txt](https://github.com/TerriFin/otm-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
+Second week assignments:
+[maksukortti]()
+[unicafe]()
+[screenshot]()
 
 
 In here, i will **hopefully** build my very own *economy simulator*
 
 Hope to see you then **xoxoxo**
-
-This change was added from terminal
