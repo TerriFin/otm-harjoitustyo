@@ -6,7 +6,7 @@ This software is going to be a simple simulator/game, in which the player has to
 
 ## UI
 
-### The ui is going to be compromised from three different views;
+### The ui is going to be comprised from three different views;
 
 Main menu, in which the player either starts the game, or creates new companies for the game.
 
