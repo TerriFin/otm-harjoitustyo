@@ -9,20 +9,18 @@ package com.mycompany.ekonomista.domain;
  *
  * @author samisaukkonen
  */
-public class User implements UserInterface {
+public class User {
 
     private int money;
 
     public User(int startingMoney) {
         this.money = startingMoney;
     }
-    
-    @Override
+
     public int getMoney() {
         return money;
     }
 
-    @Override
     public boolean buyCompanyStocks(int amount, Company company) {
         try {
             money -= company.buy(amount, money);
@@ -31,8 +29,7 @@ public class User implements UserInterface {
             return false;
         }
     }
-    
-    @Override
+
     public boolean sellCompanyStocks(int amount, Company company) {
         try {
             money += company.sell(amount);
@@ -40,5 +37,9 @@ public class User implements UserInterface {
         } catch (Exception e) {
             return false;
         }
+    }
+    
+    public void setMoneyTo(int amount) {
+        money = amount;
     }
 }

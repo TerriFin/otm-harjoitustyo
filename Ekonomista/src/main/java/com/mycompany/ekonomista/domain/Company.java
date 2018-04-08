@@ -9,7 +9,7 @@ package com.mycompany.ekonomista.domain;
  *
  * @author samisaukkonen
  */
-public class Company implements CompanyInterface {
+public class Company {
 
     private String companyName;
     private int companyIndex;
@@ -57,7 +57,6 @@ public class Company implements CompanyInterface {
         return ownedStocks;
     }
 
-    @Override
     public void tick(int changesCourse, int howMuch) {
         lastTickChange = tickChange;
         
@@ -94,7 +93,6 @@ public class Company implements CompanyInterface {
         }
     }
 
-    @Override
     public int sell(int amount) {
         if (amount > ownedStocks || amount < 0) {
             throw new IllegalArgumentException();
@@ -104,7 +102,6 @@ public class Company implements CompanyInterface {
         }
     }
 
-    @Override
     public int buy(int amount, int money) {
         int amountNeeded = companyIndex * amount;
 
@@ -114,6 +111,10 @@ public class Company implements CompanyInterface {
             ownedStocks += amount;
             return amountNeeded;
         }
+    }
+    
+    public void setOwnedStockToZero() {
+        ownedStocks = 0;
     }
 
     public void printCompanyInfo() {

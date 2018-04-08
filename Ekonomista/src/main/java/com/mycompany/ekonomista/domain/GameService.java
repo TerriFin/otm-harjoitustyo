@@ -9,27 +9,42 @@ import com.mycompany.ekonomista.dao.CompanyDao;
 import com.mycompany.ekonomista.dao.DummyCompanyDao;
 import java.util.List;
 import java.util.Random;
+import java.util.TimerTask;
 
 /**
  *
  * @author samisaukkonen
  */
-public class GameService {
+public class GameService extends TimerTask {
     private CompanyDao companyDao;
-    private UserInterface user;
+    private User user;
+    
     private List<Company> companys;
     private Random random;
+    
+    private boolean ironman;
     
     public GameService(CompanyDao companyDao, User user) {
         this.companyDao = companyDao;
         this.user = user;
+        
         this.companys = this.companyDao.getAll();
         this.random = new Random();
+        
+        if (this.user.getMoney() > 5000) {
+            this.ironman = false;
+        } else {
+            this.ironman = true;
+        }
     }
     
     public void tick() {
         for (Company company : companys) {
             company.tick(random.nextInt(101), random.nextInt(company.getMaxChangePerTick()));
+            
+            if (company.getCompanyIndex() == 0) {
+                company.setOwnedStockToZero();
+            }
         }
     }
     
@@ -43,13 +58,15 @@ public class GameService {
     
     public void addCompany(String name, int startingIndex, int chanceToChangeCourse, int maxTickChange, int maxChangePerTick) {
         Company companyToAdd = new Company(name, startingIndex, chanceToChangeCourse, maxTickChange, maxChangePerTick);
-        Company newCompany = companyDao.create(companyToAdd);
-        companys.add(newCompany);
+        companyDao.create(companyToAdd);
     }
     
     public void deleteCompany(Company company) {
         companyDao.delete(company);
-        companys.remove(company);
+    }
+    
+    public boolean isIronman() {
+        return ironman;
     }
     
     public void printAllCompanys() {
@@ -59,5 +76,11 @@ public class GameService {
         }
         
         System.out.println("------------------------");
+    }
+
+    @Override
+    public void run() {
+        tick();
+        printAllCompanys();
     }
 }

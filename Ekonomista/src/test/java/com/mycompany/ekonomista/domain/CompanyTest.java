@@ -150,4 +150,14 @@ public class CompanyTest {
         
         assertEquals(0, company.getCompanyIndex());
     }
+    
+    @Test public void settingOwnedCompanyStocksToZeroWorks() {
+        company.buy(4, 5000);
+        
+        assertEquals(4, company.getOwnedStocks());
+        
+        company.setOwnedStockToZero();
+        
+        assertEquals(0, company.getOwnedStocks());
+    }
 }

@@ -91,4 +91,13 @@ public class UserTest {
         assertEquals(0, company.getOwnedStocks());
         assertEquals(true, success);
     }
+    
+    @Test
+    public void settingNewMoneyAmountWorks() {
+        assertEquals(5000, user.getMoney());
+        
+        user.setMoneyTo(1000000);
+        
+        assertEquals(1000000, user.getMoney());
+    }
 }

@@ -8,6 +8,7 @@ package com.mycompany.ekonomista;
 import com.mycompany.ekonomista.dao.DummyCompanyDao;
 import com.mycompany.ekonomista.domain.GameService;
 import com.mycompany.ekonomista.domain.User;
+import java.util.Timer;
 
 /**
  *
@@ -20,28 +21,8 @@ public class TextMain {
         
         GameService gameService = new GameService(companyDao, user);
         
-        gameService.printAllCompanys();
-        
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        gameService.tick();
-        
-        gameService.printAllCompanys();
+        Timer timer = new Timer();
+        timer.schedule(gameService, 0, 3000);
     }
     
 }
