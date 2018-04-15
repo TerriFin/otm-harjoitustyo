@@ -19,16 +19,16 @@ public class GameService extends TimerTask {
     private CompanyDao companyDao;
     private User user;
     
-    private List<Company> companys;
+    private List<Company> companies;
     private Random random;
     
     private boolean ironman;
     
-    public GameService(CompanyDao companyDao, User user) {
+    public GameService(CompanyDao companyDao, String userName, int startingMoney) {
         this.companyDao = companyDao;
-        this.user = user;
+        this.user = new User(userName, startingMoney);
         
-        this.companys = this.companyDao.getAll();
+        this.companies = this.companyDao.getAll();
         this.random = new Random();
         
         if (this.user.getMoney() > 5000) {
@@ -38,8 +38,20 @@ public class GameService extends TimerTask {
         }
     }
     
+    public int getCurrentMoney() {
+        return user.getMoney();
+    }
+    
+    public boolean isIronman() {
+        return ironman;
+    }
+    
+    public List<Company> getAllCompanies() {
+        return companies;
+    }
+    
     public void tick() {
-        for (Company company : companys) {
+        for (Company company : companies) {
             company.tick(random.nextInt(101), random.nextInt(company.getMaxChangePerTick()));
             
             if (company.getCompanyIndex() == 0) {
@@ -56,21 +68,8 @@ public class GameService extends TimerTask {
         return user.sellCompanyStocks(amount, company);
     }
     
-    public void addCompany(String name, int startingIndex, int chanceToChangeCourse, int maxTickChange, int maxChangePerTick) {
-        Company companyToAdd = new Company(name, startingIndex, chanceToChangeCourse, maxTickChange, maxChangePerTick);
-        companyDao.create(companyToAdd);
-    }
-    
-    public void deleteCompany(Company company) {
-        companyDao.delete(company);
-    }
-    
-    public boolean isIronman() {
-        return ironman;
-    }
-    
     public void printAllCompanys() {
-        for (Company company : companys) {
+        for (Company company : companies) {
             company.printCompanyInfo();
             System.out.println("");
         }

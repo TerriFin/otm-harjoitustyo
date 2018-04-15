@@ -24,11 +24,12 @@ public class UserTest {
     @Before
     public void setUp() {
         company = new Company("Elisa", 500, 40, 50, 20);
-        user = new User(5000);
+        user = new User("Jarmo", 5000);
     }
 
     @Test
     public void constructorWorksProperlyAtStart() {
+        assertEquals("Jarmo", user.getName());
         assertEquals(5000, user.getMoney());
     }
 

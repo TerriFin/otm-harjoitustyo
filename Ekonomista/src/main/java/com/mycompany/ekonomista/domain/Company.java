@@ -123,4 +123,15 @@ public class Company {
                 + "index change: " + lastTickChange + "\n"
                 + "owned stocks: " + ownedStocks);
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        Company otherCompany = (Company) o;
+        return hashCode() == otherCompany.hashCode();
+    }
+    
+    @Override
+    public int hashCode() {
+        return companyName.hashCode();
+    }
 }

@@ -11,10 +11,16 @@ package com.mycompany.ekonomista.domain;
  */
 public class User {
 
+    private String name;
     private int money;
 
-    public User(int startingMoney) {
+    public User(String name, int startingMoney) {
+        this.name = name;
         this.money = startingMoney;
+    }
+    
+    public String getName() {
+        return name;
     }
 
     public int getMoney() {

@@ -16,10 +16,9 @@ import java.util.Timer;
  */
 public class TextMain {
     public static void main(String[] args) {
-        User user = new User(10000);
         DummyCompanyDao companyDao = new DummyCompanyDao();
         
-        GameService gameService = new GameService(companyDao, user);
+        GameService gameService = new GameService(companyDao, "Jarmo", 10000);
         
         Timer timer = new Timer();
         timer.schedule(gameService, 0, 3000);

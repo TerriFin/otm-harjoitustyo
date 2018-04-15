@@ -40,6 +40,7 @@ public class CompanyTest {
         assertEquals("Elisa", company.getCompanyName());
         assertEquals(500, company.getCompanyIndex());
         assertEquals(0, company.getOwnedStocks());
+        assertEquals(0, company.getCompanyIndexChange());
     }
 
     @Test
@@ -137,7 +138,8 @@ public class CompanyTest {
         assertEquals(359, company.getCompanyIndex());
     }
     
-    @Test public void CompanyIndexCannotGoNegative() {
+    @Test 
+    public void CompanyIndexCannotGoNegative() {
         company.tick(10, 20);
         
         for (int i = 0; i < 30; i++) {
@@ -151,7 +153,8 @@ public class CompanyTest {
         assertEquals(0, company.getCompanyIndex());
     }
     
-    @Test public void settingOwnedCompanyStocksToZeroWorks() {
+    @Test 
+    public void settingOwnedCompanyStocksToZeroWorks() {
         company.buy(4, 5000);
         
         assertEquals(4, company.getOwnedStocks());
@@ -159,5 +162,17 @@ public class CompanyTest {
         company.setOwnedStockToZero();
         
         assertEquals(0, company.getOwnedStocks());
+    }
+    
+    @Test
+    public void hashCodeAndEqualsWorks() {
+        Company sameNewCompany = new Company("Elisa", 500, 40, 50, 20);
+        Company differentNewCompany = new Company("Perfektio", 500, 40, 50, 20);
+        
+        assertEquals(true, company.hashCode() == sameNewCompany.hashCode());
+        assertEquals(false, company.hashCode() == differentNewCompany.hashCode());
+        
+        assertEquals(true, company.equals(sameNewCompany));
+        assertEquals(false, company.equals(differentNewCompany));
     }
 }
