@@ -9,3 +9,18 @@ In the game, the goal of the player is to amass wealth by trading **badly** simu
 
 [hour accounting](https://github.com/TerriFin/otm-harjoitustyo/blob/master/documentation/hour_accounting.md)
 
+[architecture](https://github.com/TerriFin/otm-harjoitustyo/blob/master/documentation/arkkitehtuuri.md)
+
+[release](https://github.com/TerriFin/otm-harjoitustyo/releases)
+
+**Some quick terminal commands;**
+
+**mvn test** runs tests
+
+**mvn test jacoco:report** generates test coverage report
+
+**mvn jxr:jxr checkstyle:checkstyle** generates checkstyle coverage report
+
+**mvn package** generates two new executable jar files, you want the one without the word *"original"* in its name
+
+*All generated files can be founds in **target** directory*

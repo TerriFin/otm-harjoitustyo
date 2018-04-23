@@ -31,10 +31,11 @@ public class DummyCompanyDao implements CompanyDao {
     }
 
     @Override
-    public Company create(String companyName, int companyIndex, int chanceToChangeCourse, int maxTickChange, int maxChangePerTick) {
+    public boolean create(String companyName, int companyIndex, int chanceToChangeCourse, int maxTickChange, int maxChangePerTick) {
         Company company = new Company(companyName, companyIndex, chanceToChangeCourse, maxTickChange, maxChangePerTick);
         companies.add(company);
-        return company;
+        
+        return true;
     }
 
     @Override

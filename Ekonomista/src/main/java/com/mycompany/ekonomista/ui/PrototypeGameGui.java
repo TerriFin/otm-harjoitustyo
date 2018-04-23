@@ -36,10 +36,9 @@ import javafx.util.Duration;
  *
  * @author samisaukkonen
  */
-public class GameUi extends Application {
+public class PrototypeGameGui extends Application {
 
     private GameService gameService;
-    private CompanyDao companyDao;
 
     private HashMap<Company, Label> indexes;
     private HashMap<Company, Label> previousIndexes;
@@ -53,11 +52,11 @@ public class GameUi extends Application {
 
     @Override
     public void init() throws Exception {
-        companyDao = new DummyCompanyDao();
+        gameService = new GameService(new DummyCompanyDao());
     }
 
-    public void initGame(String name, int startingMoney) {
-        gameService = new GameService(companyDao, name, startingMoney);
+    public void initGame(String userName, int startingMoney) {
+        gameService.setUser(userName, startingMoney);
 
         indexes = new HashMap<>();
         previousIndexes = new HashMap<>();
@@ -69,7 +68,7 @@ public class GameUi extends Application {
 
         HBox userInfo = new HBox(10);
         userInfo.autosize();
-        userInfo.getChildren().addAll(new Label(name), moneylabel);
+        userInfo.getChildren().addAll(new Label(userName), moneylabel);
 
         VBox mainGameView = new VBox(10);
         mainGameView.getChildren().add(userInfo);
@@ -296,7 +295,7 @@ public class GameUi extends Application {
             int companyMaxTickChange = Integer.parseInt(maxTickChange.getText());
             int companyMaxChangePerTick = Integer.parseInt(maxChangePerTick.getText());
 
-            companyDao.create(companyName, companyIndex, companyChanceToChangeCourse, companyMaxTickChange, companyMaxChangePerTick);
+            gameService.addCompany(companyName, companyIndex, companyChanceToChangeCourse, companyMaxTickChange, companyMaxChangePerTick);
 
             newName.setText("");
             startingIndex.setText("");

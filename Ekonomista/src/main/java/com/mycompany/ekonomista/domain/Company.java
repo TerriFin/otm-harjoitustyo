@@ -5,11 +5,13 @@
  */
 package com.mycompany.ekonomista.domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author samisaukkonen
  */
-public class Company {
+public class Company implements Serializable {
 
     private String companyName;
     private int companyIndex;
@@ -115,13 +117,6 @@ public class Company {
     
     public void setOwnedStockToZero() {
         ownedStocks = 0;
-    }
-
-    public void printCompanyInfo() {
-        System.out.println(companyName + "\n"
-                + "index: " + companyIndex + "\n"
-                + "index change: " + lastTickChange + "\n"
-                + "owned stocks: " + ownedStocks);
     }
     
     @Override

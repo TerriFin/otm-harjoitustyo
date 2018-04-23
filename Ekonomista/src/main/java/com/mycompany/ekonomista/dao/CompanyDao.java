@@ -16,7 +16,7 @@ public interface CompanyDao {
     
     public List<Company> getAll();
     
-    public Company create(String companyName, int companyIndex, int chanceToChangeCourse, int maxTickChange, int maxChangePerTick);
+    public boolean create(String companyName, int companyIndex, int chanceToChangeCourse, int maxTickChange, int maxChangePerTick);
     
     public void delete(Company company);
 }
