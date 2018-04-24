@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -123,8 +124,10 @@ public class Game {
         userInfo.setAlignment(Pos.CENTER);
 
         Label usernameLabel = new Label(gameService.getUsername());
+        usernameLabel.setFont(new Font("Arial", 30));
         usernameLabel.setAlignment(Pos.CENTER);
         currentMoneyLabel = new Label("Current money: " + gameService.getCurrentMoney() + "$");
+        currentMoneyLabel.setFont(new Font("Arial", 15));
         currentMoneyLabel.setAlignment(Pos.CENTER);
 
         userInfo.getChildren().addAll(usernameLabel, currentMoneyLabel);

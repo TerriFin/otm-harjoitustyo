@@ -68,7 +68,7 @@ public class CompanyCreator {
         mainCompanyCreatorLabel.setFont(new Font("Arial", 30));
 
         
-        VBox companyInfoLabels = new VBox(22);
+        VBox companyInfoLabels = new VBox(20);
 
         Label companyNameLabel = new Label("Company name");
         Label companyStartingIndexLabel = new Label("Starting index");
@@ -113,8 +113,8 @@ public class CompanyCreator {
                 gameService.addCompany(companyNameInput.getText(),
                         Integer.parseInt(companyStartingIndexInput.getText()),
                         Integer.parseInt(companyInstabilityInput.getText()),
-                        Integer.parseInt(companyMaxTickChangeInput.getText()),
-                        Integer.parseInt(companyTickMaxChangeInput.getText()));
+                        Integer.parseInt(companyTickMaxChangeInput.getText()),
+                        Integer.parseInt(companyMaxTickChangeInput.getText()));
                 
                 primaryStage.setScene(this.getCompanyCreatorScene(primaryStage, mainmenu, gameService, game));
             } catch (Exception exception) {
