@@ -9,7 +9,7 @@ In the game, the goal of the player is to amass wealth by trading **badly** simu
 
 [hour accounting](https://github.com/TerriFin/otm-harjoitustyo/blob/master/documentation/hour_accounting.md)
 
-[manual](https://github.com/TerriFin/otm-harjoitustyo/blob/master/documentation/manual)
+[manual](https://github.com/TerriFin/otm-harjoitustyo/blob/master/documentation/manual.md)
 
 [architecture](https://github.com/TerriFin/otm-harjoitustyo/blob/master/documentation/arkkitehtuuri.md)
 
