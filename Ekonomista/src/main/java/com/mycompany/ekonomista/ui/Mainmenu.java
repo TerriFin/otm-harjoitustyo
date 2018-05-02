@@ -5,6 +5,7 @@
  */
 package com.mycompany.ekonomista.ui;
 
+import com.mycompany.ekonomista.dao.HighscoresDao;
 import com.mycompany.ekonomista.domain.Company;
 import com.mycompany.ekonomista.domain.GameService;
 import java.util.List;
@@ -14,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -29,7 +31,7 @@ import javafx.util.Duration;
  */
 public class Mainmenu {
 
-    public Scene getMainmenuScene(Stage primaryStage, CompanyCreator companyCreator, GameService gameService, Game game) {
+    public Scene getMainmenuScene(Stage primaryStage, CompanyCreator companyCreator, GameService gameService, Game game, Hiscores hiScoresScene, HighscoresDao hiScores) {
         VBox mainMenu = new VBox(10);
 
         VBox titleNodes = new VBox(30);
@@ -67,11 +69,22 @@ public class Mainmenu {
 
             // start game
             if (playerNameInput.getText().isEmpty()) {
-                System.out.println("insert window saying to enter name or something");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Invalid input");
+                alert.setHeaderText("Player name missing");
+                alert.setContentText("Please insert player name");
+
+                alert.showAndWait();
+            } else if (playerNameInput.getText().contains(" ")) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Invalid input");
+                alert.setContentText("Player name cannot contain spaces");
+
+                alert.showAndWait();
             } else {
                 try {
                     gameService.setUser(playerNameInput.getText(), Integer.parseInt(startingMoneyInput.getText()));
-                    primaryStage.setScene(game.getGameScene(primaryStage, gameService));
+                    primaryStage.setScene(game.getGameScene(primaryStage, gameService, hiScores));
 
                     Timeline mainGameLoop = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
                         @Override
@@ -83,7 +96,12 @@ public class Mainmenu {
                     mainGameLoop.setCycleCount(Timeline.INDEFINITE);
                     mainGameLoop.play();
                 } catch (Exception exception) {
-                    System.out.println("insert a window barating for letters in money");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Invalid input");
+                    alert.setHeaderText("Invalid player money amount");
+                    alert.setContentText("Please check that there is no spaces and/or letters in money input field");
+
+                    alert.showAndWait();
                 }
             }
         });
@@ -92,12 +110,23 @@ public class Mainmenu {
         newCompanyButton.setOnAction(e -> {
 
             // switch scene to company creator
-            primaryStage.setScene(companyCreator.getCompanyCreatorScene(primaryStage, this, gameService, game));
+            primaryStage.setScene(companyCreator.getCompanyCreatorScene(primaryStage, this, gameService, game, hiScoresScene, hiScores));
         });
 
         buttons.getChildren().addAll(startButton, newCompanyButton);
 
-        mainMenu.getChildren().addAll(titleNodes, gameStartingInputs, buttons);
+        HBox hiScoreContainer = new HBox(10);
+        hiScoreContainer.setAlignment(Pos.CENTER);
+
+        Button hiScoreButton = new Button("HiScores");
+        hiScoreButton.setAlignment(Pos.CENTER);
+        hiScoreButton.setOnAction(e -> {
+            primaryStage.setScene(hiScoresScene.getHiscoresScene(primaryStage, this, game, companyCreator, gameService, hiScores));
+        });
+
+        hiScoreContainer.getChildren().add(hiScoreButton);
+
+        mainMenu.getChildren().addAll(titleNodes, gameStartingInputs, buttons, hiScoreContainer);
 
         return new Scene(mainMenu, 600, 250);
     }

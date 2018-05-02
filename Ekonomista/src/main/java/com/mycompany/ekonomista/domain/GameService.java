@@ -12,7 +12,8 @@ import java.util.Random;
 import java.util.TimerTask;
 
 /**
- *
+ * This class offers all methods that are required in GUI elements to build a game.
+ * 
  * @author samisaukkonen
  */
 public class GameService {
@@ -30,6 +31,13 @@ public class GameService {
         this.random = new Random();
     }
 
+    /**
+     * Sets new user based on username and starting money.
+     * Also checks starting money and if it is not over 5000, sets ironMan to be true.
+     * 
+     * @param userName player selected username
+     * @param startingMoney the money player starts with
+     */
     public void setUser(String userName, int startingMoney) {
         user = new User(userName, startingMoney);
 
@@ -66,6 +74,11 @@ public class GameService {
         companies = companyDao.getAll();
     }
 
+    /**
+     * This method is one game tick. It is called once every time game proceeds forwards.
+     * This method checks for every company in the game if their index is in zero, and if so sets player owned stocks also to zero.
+     * After this, the method calls tick() and passes random numbers into them for every company, proceeding the game.
+     */
     public void tick() {
         for (Company company : companies) {
             if (company.getCompanyIndex() == 0) {
@@ -76,10 +89,24 @@ public class GameService {
         }
     }
 
+    /**
+     * This method is user.buyCompanyStocks, but is in GameService since all game related things need to be accessible through this class.
+     * 
+     * @param amount amount of stocks player is buying
+     * @param company company from where player is buying the stocks from
+     * @return either true or false depending if the transaction succeeded
+     */
     public boolean buyCompanyStocks(int amount, Company company) {
         return user.buyCompanyStocks(amount, company);
     }
 
+    /**
+     * This method is user.sellCompanyStocks, but is in GameService since all game related things need to be accessible through this class.
+     * 
+     * @param amount amount of stocks player is selling
+     * @param company company from where player is selling the stocks from
+     * @return either true or false depending if the transaction succeeded
+     */
     public boolean sellCompanyStocks(int amount, Company company) {
         return user.sellCompanyStocks(amount, company);
     }

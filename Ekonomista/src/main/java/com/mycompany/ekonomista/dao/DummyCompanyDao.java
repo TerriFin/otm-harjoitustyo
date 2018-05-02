@@ -14,7 +14,7 @@ import java.util.List;
  * @author samisaukkonen
  */
 public class DummyCompanyDao implements CompanyDao {
-    List<Company> companies;
+    private List<Company> companies;
     
     public DummyCompanyDao() {
         companies = new ArrayList<>();

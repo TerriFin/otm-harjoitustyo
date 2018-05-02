@@ -8,6 +8,7 @@ package com.mycompany.ekonomista.domain;
 import java.io.Serializable;
 
 /**
+ * This class represents one company, with its own name and stats.
  *
  * @author samisaukkonen
  */
@@ -25,6 +26,15 @@ public class Company implements Serializable {
     private int maxTickChange;
     private int maxChangePerTick;
 
+    /**
+     * Constructor for company, more detail in parameters.
+     * 
+     * @param companyName name of the company
+     * @param companyIndex starting index of the company
+     * @param chanceToChangeCourse percentage chance of company index changing direction, can be thought of as volatility
+     * @param maxTickChange max change that can happen in a tick
+     * @param maxChangePerTick max amount of change that can happen in a tick
+     */
     public Company(String companyName, int companyIndex, int chanceToChangeCourse, int maxTickChange, int maxChangePerTick) {
         this.companyName = companyName;
         this.companyIndex = companyIndex;
@@ -59,6 +69,12 @@ public class Company implements Serializable {
         return ownedStocks;
     }
 
+    /**
+     * This method processes inputs that have been generated for it, and calculates new index values for every time it is called.
+     * 
+     * @param changesCourse chance for the next tick effect to be opposite to last one (must be between 0 and 100)
+     * @param howMuch how much company index goes up or down
+     */
     public void tick(int changesCourse, int howMuch) {
         lastTickChange = tickChange;
         
@@ -95,6 +111,13 @@ public class Company implements Serializable {
         }
     }
 
+    /**
+     * This method processes sell orders, and decreases current owned stocks if needed.
+     * 
+     * @param amount indicates the amount player wishes to sell this stock
+     * @return the amount of money a successful sell order brings 
+     * 
+     */
     public int sell(int amount) {
         if (amount > ownedStocks || amount < 0) {
             throw new IllegalArgumentException();
@@ -104,6 +127,13 @@ public class Company implements Serializable {
         }
     }
 
+    /**
+     * This method calculates how much money is needed to buy specified amount of stocks and increases owned stocks if needed.
+     * 
+     * @param amount indicates the amount player wishes to buy this stock
+     * @param money player's current money
+     * @return the amount of money that must be deducted from player's money supply 
+     */
     public int buy(int amount, int money) {
         int amountNeeded = companyIndex * amount;
 
@@ -115,16 +145,19 @@ public class Company implements Serializable {
         }
     }
     
+    /**
+     * sets owned stocks to zero. Kinda self-explanatory.
+     */
     public void setOwnedStockToZero() {
         ownedStocks = 0;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         Company otherCompany = (Company) o;
         return hashCode() == otherCompany.hashCode();
     }
-    
+
     @Override
     public int hashCode() {
         return companyName.hashCode();

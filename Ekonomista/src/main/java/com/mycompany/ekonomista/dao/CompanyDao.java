@@ -19,4 +19,8 @@ public interface CompanyDao {
     public boolean create(String companyName, int companyIndex, int chanceToChangeCourse, int maxTickChange, int maxChangePerTick);
     
     public void delete(Company company);
+    
+    public static void testClear() {
+        
+    };
 }
