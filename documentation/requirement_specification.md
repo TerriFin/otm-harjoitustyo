@@ -6,36 +6,22 @@ This software is going to be a simple simulator/game, in which the player has to
 
 ## UI
 
-### The ui is going to be comprised from three different views;
+### The ui is going to be comprised from four different views;
 
-Main menu, in which the player either starts the game, or creates new companies for the game.
+Main menu, in which the player either starts the game or switches the view to company creator or hi-scores
 
-Game screen, in which the player plays the game. Player sees their money and the stocks they have/can have.
+Game screen, in which the player plays the game. Player sees their money and the stocks they have/can have. Player can also retire which inserts current score into leaderboards
 
 Company creator screen, in which player enters parameters for their custom company which will appear in the game.
 
-## Features
+Hi-Scores screen, in which player can see the achiements of those who played before them
 
-### At start
+## Future development ideas 
 
--Core gameplay; selling and buying stocks in companies trying to predict where the market is going.
+-Some sort of global index that controls all other indexes (so that it is not so random, and maybe player actions could affect this global index?)
 
--Company creation; the creation of custom companies for future games (can both create and delete companies)
+-Realistic mode that fetches data from real stocks from the internet
 
-### Most likely to be added in future
+-Give Company-class different chance to go from positive to negative than from negatie to positive (i reaaally should have done this, but i was lazy :d)
 
--Saving companies and hiscores in a database
-
--Time forwarding; more gameticks/sec
-
--Chart for past company performance
-
--Custom, bad music
-
-### Most likely not added in future, but still could appear
-
--Different kinds of companies; dividend-paying companies as opposed to non dividend-paying ones
-
--Realistic mode with stock prices taken from the internet.
-
--Custom, good music
+-Force companies to start doing well when they hit zero (so that they do not stay at zero for too long)

@@ -22,26 +22,30 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author samisaukkonen
  */
 public class MusicPlayer {
+
     private String adress;
-    
+
     public MusicPlayer(String adress) {
         this.adress = adress;
     }
-    
+
     /**
-     * Plays music on an infinite loop from the address that was given to this class when it was created.
-     * 
+     * Plays music on an infinite loop from the address that was given to this
+     * class when it was created.
+     *
      * @throws UnsupportedAudioFileException
      * @throws IOException
-     * @throws LineUnavailableException 
+     * @throws LineUnavailableException
      */
     public void playMusicOnLoop() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        Media hit = new Media(new File(adress).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(hit);
-        
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        
-        mediaPlayer.play();
+        if (new File(adress).exists()) {
+            Media hit = new Media(new File(adress).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(hit);
+
+            mediaPlayer.setAutoPlay(true);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+            mediaPlayer.play();
+        }
     }
 }

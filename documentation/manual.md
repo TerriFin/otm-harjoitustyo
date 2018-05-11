@@ -1,28 +1,18 @@
 ***Ekonomista manual***
 
-**Updated for release "Week6 realease"**
+**Updated for release "Week7 release"**
 
-To download the game, all you need to do is download the four following file;
+To download the game, all you need to do is download the .zip file from releases, and unzip it.
 
-*companies.data*
+Alternatively, you can download Ekonomista and/or EkonomistaTheme.mp4. This way the game will start without any hi-scores set or companies. If you do not have the music file in the same folder as Ekonomista, the game will launch without music.
 
-*Ekonomista.jar*
-
-*EkonomistaTheme.mp4*
-
-*HiScores.sb*
-
-Once you have all these downloaded, just put them all in the same folder and double click on *"Ekonomista.jar"*.
-
-Alternatively, .jar files can also be started with the following console command;
-
-**java -jar Ekonomista.jar**
+Now all you need to do is launch the game either by double clicking the .jar file, or launching the .jar file from terminal with the command "*java -jar Ekonomista.jar*".
 
 ***After launching the game***
 
 You will be presented with the main menu. Here you can navigate into hiscores, or company creator.
 
-If you downloaded companies.data, you have some companies bu default so you can just insert name and hit *start*.
+If you have companies.data, you have some companies bu default so you can just insert name and hit *start*.
 
 **Company creator**
 

@@ -8,4 +8,5 @@
 | 15.4 | 6   | made (badly) working gui prototype, added some tests mainly for assigment requirements
 | 24.4 | 12  | rewrote whole gui, this time pretty well adding some minor features (like deleting companies, companies saved to file, etc..)
 | 2.5  | 6   | added music and leaderboards
-| Total| 38  |
+| 11.5 | 1   | made it so that the game can start without any other files
+| Total| 39  |
